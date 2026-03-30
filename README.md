@@ -319,6 +319,14 @@ Don't just read data — get personalized results:
 
 ---
 
+## Related Projects
+
+- **[Karpathy's Jobs](https://github.com/karpathy/jobs)** — Andrej Karpathy's BLS occupation exposure analysis with interactive treemap (342 occupations, 0-10 exposure score)
+- **[EIG AI Unemployment Research](https://github.com/EIG-Research/AI-unemployment)** — Economic Innovation Group's estimates of AI impact on employment
+- **[AI Prompt Cheat Sheet](https://github.com/manduks/ai-prompt-cheatsheet)** — 200+ copy-paste prompts to start working with AI today
+
+**How this repo differs**: Karpathy's analysis uses a single AI Exposure axis. This database adds actionable context: displacement timelines, specific AI threats per job, workforce sizes, safe skills, and an action plan. Designed for workers, not researchers.
+
 ## Sources & Citations
 
 - [Bureau of Labor Statistics — Employment Projections](https://www.bls.gov/emp/)
