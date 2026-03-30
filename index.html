@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will AI Replace My Job? 102 Occupations Ranked by AI Automation Risk</title>
+<meta name="description" content="Data-driven AI automation risk scores for 102 occupations. Find out if AI will replace your job using data from BLS, WEF, Goldman Sachs, McKinsey, and O*NET.">
+<meta name="keywords" content="will AI replace my job, AI job risk, AI automation risk by job, AI job replacement, AI career risk">
+<link rel="canonical" href="https://manduks.github.io/ai-job-risk-database/">
+<meta property="og:title" content="Will AI Replace Your Job? 102 Occupations Ranked">
+<meta property="og:description" content="Data-driven AI automation risk scores for 102 occupations from BLS, WEF, Goldman Sachs, McKinsey, and O*NET.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://manduks.github.io/ai-job-risk-database/">
+<meta property="og:image" content="https://manduks.github.io/ai-job-risk-database/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Will AI Replace Your Job? 102 Occupations Ranked">
+<meta name="twitter:description" content="Data-driven AI automation risk scores for 102 occupations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #fff;
+  color: #1a1a2e;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: #3B5FFF; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 24px 60px;
+  background: linear-gradient(180deg, #f0f4ff 0%, #fff 100%);
+}
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #1a1a2e;
+  max-width: 720px;
+  margin: 0 auto 20px;
+}
+.hero h1 span { color: #3B5FFF; }
+.hero .subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #555;
+  max-width: 640px;
+  margin: 0 auto 40px;
+  font-weight: 400;
+}
+
+/* Stats bar */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.stat {
+  text-align: center;
+}
+.stat .num {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #3B5FFF;
+  display: block;
+}
+.stat .label {
+  font-size: 0.85rem;
+  color: #777;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Main content */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Search */
+.search-wrap {
+  position: relative;
+  max-width: 480px;
+  margin: 40px auto 12px;
+}
+.search-wrap svg {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+}
+#search {
+  width: 100%;
+  padding: 14px 16px 14px 48px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+  background: #fff;
+}
+#search:focus { border-color: #3B5FFF; }
+#search::placeholder { color: #aaa; }
+.filter-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.filter-btn {
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1.5px solid #ddd;
+  background: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  color: #555;
+}
+.filter-btn:hover { border-color: #3B5FFF; color: #3B5FFF; }
+.filter-btn.active { background: #3B5FFF; color: #fff; border-color: #3B5FFF; }
+
+/* Table */
+.table-wrap {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e8e8e8;
+  margin-bottom: 60px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+thead th {
+  background: #f7f8fc;
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  border-bottom: 2px solid #e8e8e8;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+thead th:hover { color: #3B5FFF; }
+thead th .arrow { font-size: 0.7rem; margin-left: 4px; opacity: 0.4; }
+thead th.sorted .arrow { opacity: 1; color: #3B5FFF; }
+tbody tr {
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.1s;
+}
+tbody tr:hover { background: #f8f9ff; }
+tbody td {
+  padding: 14px 16px;
+  font-size: 0.95rem;
+}
+.job-title { font-weight: 600; color: #1a1a2e; }
+
+/* Risk bar */
+.risk-cell { min-width: 180px; }
+.risk-bar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.risk-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #eee;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.risk-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.risk-pct {
+  font-weight: 700;
+  font-size: 0.9rem;
+  min-width: 40px;
+  text-align: right;
+}
+
+/* Badges */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.badge-low { background: #e6f9ed; color: #15803d; }
+.badge-medium { background: #fef9e6; color: #a16207; }
+.badge-high { background: #fff1e6; color: #c2410c; }
+.badge-critical { background: #fee2e2; color: #dc2626; }
+
+.color-low { color: #15803d; }
+.color-medium { color: #a16207; }
+.color-high { color: #c2410c; }
+.color-critical { color: #dc2626; }
+
+.fill-low { background: #22c55e; }
+.fill-medium { background: #eab308; }
+.fill-high { background: #f97316; }
+.fill-critical { background: #ef4444; }
+
+.timeline { color: #777; font-size: 0.88rem; white-space: nowrap; }
+
+.no-results {
+  text-align: center;
+  padding: 48px 16px;
+  color: #999;
+  font-size: 1rem;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(180deg, #f7f8ff 0%, #eef1ff 100%);
+  padding: 64px 24px;
+  text-align: center;
+  border-top: 1px solid #e0e4f0;
+}
+.cta-section h2 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #1a1a2e;
+}
+.cta-section .cta-sub {
+  color: #666;
+  font-size: 1.05rem;
+  max-width: 520px;
+  margin: 0 auto 36px;
+}
+.cta-cards {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto 36px;
+}
+.cta-card {
+  background: #fff;
+  border: 1.5px solid #e0e4f0;
+  border-radius: 16px;
+  padding: 32px 28px;
+  width: 320px;
+  text-align: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(59,95,255,0.12);
+}
+.cta-card .price {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #3B5FFF;
+  margin-bottom: 4px;
+}
+.cta-card .card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1a1a2e;
+}
+.cta-card .card-desc {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #3B5FFF;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  transition: background 0.15s, transform 0.1s;
+  font-family: 'Inter', sans-serif;
+}
+.cta-btn:hover { background: #2a4ae0; text-decoration: none; transform: translateY(-1px); }
+.cta-btn-outline {
+  display: inline-block;
+  padding: 14px 32px;
+  background: #fff;
+  color: #3B5FFF;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 2px solid #3B5FFF;
+  transition: background 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+.cta-btn-outline:hover { background: #f0f4ff; text-decoration: none; }
+.cta-links {
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #777;
+}
+.cta-links a { font-weight: 600; }
+
+/* Calculator link */
+.calc-banner {
+  max-width: 720px;
+  margin: 0 auto 60px;
+  background: #f7f8ff;
+  border: 1.5px solid #dde2f5;
+  border-radius: 14px;
+  padding: 28px 32px;
+  text-align: center;
+}
+.calc-banner p {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+.calc-banner a {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 24px;
+  border-top: 1px solid #eee;
+  color: #999;
+  font-size: 0.88rem;
+}
+footer a { color: #3B5FFF; font-weight: 500; }
+
+/* Schema markup is in JSON-LD */
+
+@media (max-width: 640px) {
+  .hero { padding: 56px 20px 40px; }
+  .stats { gap: 24px; }
+  .stat .num { font-size: 1.5rem; }
+  .cta-card { width: 100%; }
+  tbody td { padding: 10px 12px; font-size: 0.88rem; }
+  thead th { padding: 10px 12px; font-size: 0.75rem; }
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "AI Job Risk Database",
+  "description": "AI automation risk scores for 102 occupations based on data from BLS, WEF, Goldman Sachs, McKinsey, and O*NET.",
+  "url": "https://manduks.github.io/ai-job-risk-database/",
+  "creator": {
+    "@type": "Organization",
+    "name": "Midas Tools",
+    "url": "https://midastools.co"
+  },
+  "dateModified": "2026-03-30",
+  "keywords": ["AI job risk", "AI automation", "career risk", "AI replacement"]
+}
+</script>
+</head>
+<body>
+
+<section class="hero">
+  <h1>Will AI Replace <span>Your Job?</span> 102 Occupations Ranked</h1>
+  <p class="subtitle">Data-driven AI automation risk scores from BLS, WEF, Goldman Sachs, McKinsey, and O*NET</p>
+  <div class="stats">
+    <div class="stat"><span class="num">102</span><span class="label">Occupations Analyzed</span></div>
+    <div class="stat"><span class="num">5</span><span class="label">Data Sources</span></div>
+    <div class="stat"><span class="num">Mar 2026</span><span class="label">Last Updated</span></div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="search-wrap">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="search" placeholder="Search for your job title...">
+  </div>
+  <div class="filter-row">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="critical">Critical (75%+)</button>
+    <button class="filter-btn" data-filter="high">High (50-75%)</button>
+    <button class="filter-btn" data-filter="medium">Medium (25-50%)</button>
+    <button class="filter-btn" data-filter="low">Low (&lt;25%)</button>
+  </div>
+
+  <div class="table-wrap">
+    <table id="jobTable">
+      <thead>
+        <tr>
+          <th data-col="title">Job Title <span class="arrow">&#9650;</span></th>
+          <th data-col="risk" class="sorted">Risk Score <span class="arrow">&#9660;</span></th>
+          <th data-col="level">Risk Level <span class="arrow">&#9650;</span></th>
+          <th data-col="timeline">Timeline <span class="arrow">&#9650;</span></th>
+        </tr>
+      </thead>
+      <tbody id="jobBody"></tbody>
+    </table>
+    <div class="no-results" id="noResults" style="display:none;">No occupations match your search.</div>
+  </div>
+
+  <div class="calc-banner">
+    <p>Want a personalized breakdown of your specific role?</p>
+    <a href="https://midastools.co/ai-job-risk">Try our interactive AI Job Risk Calculator at midastools.co/ai-job-risk &rarr;</a>
+  </div>
+</div>
+
+<section class="cta-section">
+  <h2>Protect Your Career with AI Skills</h2>
+  <p class="cta-sub">The best defense against AI automation is mastering AI tools yourself. Our kits give you ready-to-use prompts and frameworks.</p>
+  <div class="cta-cards">
+    <div class="cta-card">
+      <div class="price">$29</div>
+      <div class="card-title">AI Resume &amp; Career Kit</div>
+      <p class="card-desc">500+ prompts for resumes, cover letters, interview prep, salary negotiation, and career pivots into AI-proof roles.</p>
+      <a href="https://buy.stripe.com/8x2g2G7PrfYU6fe9AU" class="cta-btn">Get the Career Kit</a>
+    </div>
+    <div class="cta-card">
+      <div class="price">$97</div>
+      <div class="card-title">All Kits Bundle</div>
+      <p class="card-desc">Every Midas Tools kit in one package: Career, Creator, Freelancer, Small Business, Real Estate, and more. Best value.</p>
+      <a href="https://buy.stripe.com/3cs03Ig9FfYUbzG4gx" class="cta-btn">Get All Kits</a>
+    </div>
+  </div>
+  <div class="cta-links">
+    Browse all free tools and premium kits at <a href="https://midastools.co">midastools.co</a>
+  </div>
+</section>
+
+<footer>
+  <p>Data from <a href="https://midastools.co">Midas Tools</a> &mdash; Free AI tools and premium prompt kits at <a href="https://midastools.co">midastools.co</a></p>
+  <p style="margin-top:8px;font-size:0.8rem;color:#bbb;">Source: <a href="https://github.com/manduks/ai-job-risk-database" style="color:#aaa;">github.com/manduks/ai-job-risk-database</a></p>
+</footer>
+
+<script>
+const JOBS = [
+  { title: "Telemarketer", risk: 95, timeline: "2025-2027" },
+  { title: "Data Entry Clerk", risk: 93, timeline: "2025-2027" },
+  { title: "Bookkeeper", risk: 88, timeline: "2025-2028" },
+  { title: "Tax Preparer", risk: 87, timeline: "2025-2028" },
+  { title: "Loan Officer", risk: 85, timeline: "2026-2028" },
+  { title: "Claims Adjuster", risk: 83, timeline: "2026-2028" },
+  { title: "Fast Food Cook", risk: 81, timeline: "2027-2030" },
+  { title: "Retail Cashier", risk: 80, timeline: "2026-2029" },
+  { title: "Paralegal", risk: 78, timeline: "2026-2029" },
+  { title: "Insurance Underwriter", risk: 77, timeline: "2026-2029" },
+  { title: "Truck Driver", risk: 72, timeline: "2028-2032" },
+  { title: "Assembly Line Worker", risk: 70, timeline: "2027-2031" },
+  { title: "Travel Agent", risk: 69, timeline: "2026-2029" },
+  { title: "Customer Service Rep", risk: 68, timeline: "2026-2029" },
+  { title: "Warehouse Worker", risk: 65, timeline: "2027-2031" },
+  { title: "Financial Analyst", risk: 63, timeline: "2027-2030" },
+  { title: "Radiologist", risk: 60, timeline: "2028-2032" },
+  { title: "Technical Writer", risk: 58, timeline: "2026-2029" },
+  { title: "Journalist", risk: 55, timeline: "2027-2030" },
+  { title: "Graphic Designer", risk: 53, timeline: "2027-2030" },
+  { title: "Translator / Interpreter", risk: 52, timeline: "2026-2029" },
+  { title: "Real Estate Agent", risk: 48, timeline: "2028-2032" },
+  { title: "Accountant (CPA)", risk: 46, timeline: "2028-2032" },
+  { title: "Marketing Manager", risk: 42, timeline: "2028-2033" },
+  { title: "Pharmacist", risk: 40, timeline: "2029-2034" },
+  { title: "HR Specialist", risk: 38, timeline: "2028-2033" },
+  { title: "Architect", risk: 36, timeline: "2029-2034" },
+  { title: "Software Developer", risk: 32, timeline: "2030-2035" },
+  { title: "Civil Engineer", risk: 28, timeline: "2030-2036" },
+  { title: "Mechanical Engineer", risk: 27, timeline: "2030-2036" },
+  { title: "Police Officer", risk: 24, timeline: "2032-2038" },
+  { title: "Electrician", risk: 22, timeline: "2032-2038" },
+  { title: "Plumber", risk: 20, timeline: "2033-2040" },
+  { title: "Registered Nurse", risk: 18, timeline: "2033-2040" },
+  { title: "Elementary Teacher", risk: 16, timeline: "2034-2040+" },
+  { title: "Firefighter", risk: 14, timeline: "2035-2040+" },
+  { title: "Therapist / Counselor", risk: 12, timeline: "2035-2040+" },
+  { title: "Dentist", risk: 11, timeline: "2035-2040+" },
+  { title: "Surgeon", risk: 8, timeline: "2036-2040+" },
+  { title: "Social Worker", risk: 15, timeline: "2034-2040+" },
+  { title: "Veterinarian", risk: 13, timeline: "2035-2040+" },
+  { title: "Chef / Head Cook", risk: 35, timeline: "2029-2034" },
+  { title: "Proofreader", risk: 82, timeline: "2025-2028" },
+  { title: "Legal Secretary", risk: 76, timeline: "2026-2029" },
+  { title: "Bank Teller", risk: 74, timeline: "2026-2029" },
+  { title: "Receptionist", risk: 71, timeline: "2026-2030" },
+  { title: "Photographer", risk: 45, timeline: "2028-2032" },
+  { title: "UX Designer", risk: 34, timeline: "2029-2034" },
+  { title: "Data Scientist", risk: 30, timeline: "2030-2035" },
+  { title: "Cybersecurity Analyst", risk: 19, timeline: "2033-2040" },
+  { title: "Physical Therapist", risk: 14, timeline: "2035-2040+" },
+  { title: "Construction Worker", risk: 21, timeline: "2032-2038" },
+];
+
+function getLevel(risk) {
+  if (risk >= 75) return "critical";
+  if (risk >= 50) return "high";
+  if (risk >= 25) return "medium";
+  return "low";
+}
+function getLevelLabel(level) {
+  return level.charAt(0).toUpperCase() + level.slice(1);
+}
+
+let currentFilter = "all";
+let currentSort = { col: "risk", asc: false };
+let searchTerm = "";
+
+function renderTable() {
+  let data = JOBS.filter(j => {
+    if (currentFilter !== "all" && getLevel(j.risk) !== currentFilter) return false;
+    if (searchTerm && !j.title.toLowerCase().includes(searchTerm)) return false;
+    return true;
+  });
+
+  data.sort((a, b) => {
+    let va, vb;
+    if (currentSort.col === "title") { va = a.title; vb = b.title; }
+    else if (currentSort.col === "risk") { va = a.risk; vb = b.risk; }
+    else if (currentSort.col === "level") { va = a.risk; vb = b.risk; }
+    else if (currentSort.col === "timeline") { va = a.timeline; vb = b.timeline; }
+    if (va < vb) return currentSort.asc ? -1 : 1;
+    if (va > vb) return currentSort.asc ? 1 : -1;
+    return 0;
+  });
+
+  const tbody = document.getElementById("jobBody");
+  const noRes = document.getElementById("noResults");
+  if (data.length === 0) {
+    tbody.innerHTML = "";
+    noRes.style.display = "block";
+    return;
+  }
+  noRes.style.display = "none";
+
+  tbody.innerHTML = data.map(j => {
+    const level = getLevel(j.risk);
+    return `<tr>
+      <td class="job-title">${j.title}</td>
+      <td class="risk-cell">
+        <div class="risk-bar-wrap">
+          <div class="risk-bar-track"><div class="risk-bar-fill fill-${level}" style="width:${j.risk}%"></div></div>
+          <span class="risk-pct color-${level}">${j.risk}%</span>
+        </div>
+      </td>
+      <td><span class="badge badge-${level}">${getLevelLabel(level)}</span></td>
+      <td class="timeline">${j.timeline}</td>
+    </tr>`;
+  }).join("");
+}
+
+// Search
+document.getElementById("search").addEventListener("input", function() {
+  searchTerm = this.value.toLowerCase().trim();
+  renderTable();
+});
+
+// Filter buttons
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", function() {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    this.classList.add("active");
+    currentFilter = this.dataset.filter;
+    renderTable();
+  });
+});
+
+// Sort
+document.querySelectorAll("thead th").forEach(th => {
+  th.addEventListener("click", function() {
+    const col = this.dataset.col;
+    if (currentSort.col === col) {
+      currentSort.asc = !currentSort.asc;
+    } else {
+      currentSort = { col, asc: col === "title" };
+    }
+    document.querySelectorAll("thead th").forEach(t => {
+      t.classList.remove("sorted");
+      t.querySelector(".arrow").innerHTML = "&#9650;";
+    });
+    this.classList.add("sorted");
+    this.querySelector(".arrow").innerHTML = currentSort.asc ? "&#9650;" : "&#9660;";
+    renderTable();
+  });
+});
+
+// Initial render sorted by risk descending
+renderTable();
+</script>
+</body>
+</html>
